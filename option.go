@@ -5,7 +5,7 @@ type Option[V any] struct {
 	Value V
 }
 
-func (me *Option[V]) Unwrap() V {
+func (me Option[V]) Unwrap() V {
 	if !me.Ok {
 		panic("not set")
 	}
