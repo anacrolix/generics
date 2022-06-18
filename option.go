@@ -19,6 +19,14 @@ func (me Option[V]) AndThen(f func(V) Option[V]) Option[V] {
 	return me
 }
 
+func (me Option[V]) UnwrapOr(or V) V {
+	if me.Ok {
+		return me.Value
+	} else {
+		return or
+	}
+}
+
 func (me *Option[V]) Set(v V) {
 	me.Ok = true
 	me.Value = v
