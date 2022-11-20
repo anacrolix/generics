@@ -17,6 +17,10 @@ func MakeSliceWithLength[T any, L constraints.Integer](slice *[]T, length L) {
 	*slice = make([]T, length)
 }
 
+func MakeSliceWithCap[T any, L constraints.Integer](slice *[]T, cap L) {
+	*slice = make([]T, 0, cap)
+}
+
 func Reversed[T any](slice []T) []T {
 	reversed := make([]T, len(slice))
 	for i := range reversed {
