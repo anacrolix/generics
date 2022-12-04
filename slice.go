@@ -28,3 +28,16 @@ func Reversed[T any](slice []T) []T {
 	}
 	return reversed
 }
+
+func Singleton[T any](t T) []T {
+	return []T{t}
+}
+
+// I take it there's no way to do this with a generic return slice element type.
+func ConvertToSliceOfAny[T any](ts []T) (ret []any) {
+	ret = make([]any, 0, len(ts))
+	for _, t := range ts {
+		ret = append(ret, t)
+	}
+	return
+}
