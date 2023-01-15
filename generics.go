@@ -7,3 +7,7 @@ func InitNew[T any](p **T) {
 func SetZero[T any](p *T) {
 	*p = ZeroValue[T]()
 }
+
+func PtrTo[T any](t T) *T {
+	return &t
+}
