@@ -25,3 +25,16 @@ func MakeMapIfNil[K comparable, V any, M ~map[K]V](pm *M) {
 		MakeMap(pm)
 	}
 }
+
+func MapContains[K comparable, V any, M ~map[K]V](m M, k K) bool {
+	_, ok := m[k]
+	return ok
+}
+
+func MapMustGet[K comparable, V any, M ~map[K]V](m M, k K) V {
+	v, ok := m[k]
+	if !ok {
+		panic(k)
+	}
+	return v
+}
