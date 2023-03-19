@@ -1,4 +1,4 @@
-package generics
+package g
 
 func InitNew[T any](p **T) {
 	*p = new(T)

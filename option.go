@@ -1,4 +1,4 @@
-package generics
+package g
 
 type Option[V any] struct {
 	Ok bool

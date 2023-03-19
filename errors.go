@@ -1,4 +1,4 @@
-package generics
+package g
 
 func UnwrapErrorTuple[T any](t T, err error) T {
 	if err != nil {
