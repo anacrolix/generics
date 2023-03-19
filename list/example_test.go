@@ -5,13 +5,14 @@
 package list_test
 
 import (
-	"container/list"
 	"fmt"
+
+	"github.com/anacrolix/generics/list"
 )
 
 func Example() {
 	// Create a new list and put some numbers in it.
-	l := list.New()
+	l := list.New[int]()
 	e4 := l.PushBack(4)
 	e1 := l.PushFront(1)
 	l.InsertBefore(3, e4)
