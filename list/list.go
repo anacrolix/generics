@@ -2,7 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package list implements a doubly linked list.
+// Package list implements a doubly linked list. The implementation is a direct port with generics
+// of "container/list" from the Go standard library.
 //
 // To iterate over a list (where l is a *List):
 //
