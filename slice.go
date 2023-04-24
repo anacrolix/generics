@@ -55,3 +55,10 @@ func SliceTake[T any](n int, slice []T) []T {
 func SliceDrop[T any](n int, slice []T) []T {
 	return slice[Min(n, len(slice)):]
 }
+
+func SliceGet[T any, I constraints.Integer](slice []T, index I) (ret Option[T]) {
+	if int(index) < len(slice) {
+		ret = Some(slice[index])
+	}
+	return
+}

@@ -39,3 +39,12 @@ func MapMustGet[K comparable, V any, M ~map[K]V](m M, k K) V {
 	}
 	return v
 }
+
+func MapInsert[K comparable, V any, M ~map[K]V](m M, k K, v V) Option[V] {
+	old, ok := m[k]
+	m[k] = v
+	return Option[V]{
+		Value: old,
+		Ok:    ok,
+	}
+}
