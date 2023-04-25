@@ -2,13 +2,14 @@ package g
 
 import "golang.org/x/exp/constraints"
 
-func MakeMapIfNilAndSet[K comparable, V any](pm *map[K]V, k K, v V) {
+// Deprecated: Use MakeMapIfNil and MapInsert separately.
+func MakeMapIfNilAndSet[K comparable, V any](pm *map[K]V, k K, v V) (added bool) {
+	MakeMapIfNil(pm)
 	m := *pm
-	if m == nil {
-		m = make(map[K]V)
-		*pm = m
-	}
+	_, exists := m[k]
+	added = !exists
 	m[k] = v
+	return
 }
 
 // Does this exist in the maps package?
