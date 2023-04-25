@@ -1,4 +1,4 @@
-package g
+package generics
 
 type Result[T any] struct {
 	Ok  T
