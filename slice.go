@@ -62,3 +62,12 @@ func SliceGet[T any, I constraints.Integer](slice []T, index I) (ret Option[T]) 
 	}
 	return
 }
+
+// Surely you should just pass iterator functions around instead. Go sux.
+func SliceMap[From, To any](froms []From, convert func(From) To) []To {
+	tos := make([]To, 0, len(froms))
+	for _, from := range froms {
+		tos = append(tos, convert(from))
+	}
+	return tos
+}
