@@ -23,13 +23,13 @@ func (h *myHeap) Len() int {
 	return len(*h)
 }
 
-func (h *myHeap) Pop() (v any) {
+func (h *myHeap) Pop() (v int) {
 	*h, v = (*h)[:h.Len()-1], (*h)[h.Len()-1]
 	return
 }
 
-func (h *myHeap) Push(v any) {
-	*h = append(*h, v.(int))
+func (h *myHeap) Push(v int) {
+	*h = append(*h, v)
 }
 
 func (h myHeap) verify(t *testing.T, i int) {
@@ -62,7 +62,7 @@ func TestInit0(t *testing.T) {
 	h.verify(t, 0)
 
 	for i := 1; h.Len() > 0; i++ {
-		x := Pop(h).(int)
+		x := Pop(h)
 		h.verify(t, 0)
 		if x != 0 {
 			t.Errorf("%d.th pop got %d; want %d", i, x, 0)
@@ -79,7 +79,7 @@ func TestInit1(t *testing.T) {
 	h.verify(t, 0)
 
 	for i := 1; h.Len() > 0; i++ {
-		x := Pop(h).(int)
+		x := Pop(h)
 		h.verify(t, 0)
 		if x != i {
 			t.Errorf("%d.th pop got %d; want %d", i, x, i)
@@ -103,7 +103,7 @@ func Test(t *testing.T) {
 	}
 
 	for i := 1; h.Len() > 0; i++ {
-		x := Pop(h).(int)
+		x := Pop(h)
 		if i < 20 {
 			Push(h, 20+i)
 		}
@@ -123,7 +123,7 @@ func TestRemove0(t *testing.T) {
 
 	for h.Len() > 0 {
 		i := h.Len() - 1
-		x := Remove(h, i).(int)
+		x := Remove(h, i)
 		if x != i {
 			t.Errorf("Remove(%d) got %d; want %d", i, x, i)
 		}
@@ -139,7 +139,7 @@ func TestRemove1(t *testing.T) {
 	h.verify(t, 0)
 
 	for i := 0; h.Len() > 0; i++ {
-		x := Remove(h, 0).(int)
+		x := Remove(h, 0)
 		if x != i {
 			t.Errorf("Remove(0) got %d; want %d", x, i)
 		}
@@ -158,7 +158,7 @@ func TestRemove2(t *testing.T) {
 
 	m := make(map[int]bool)
 	for h.Len() > 0 {
-		m[Remove(h, (h.Len()-1)/2).(int)] = true
+		m[Remove(h, (h.Len()-1)/2)] = true
 		h.verify(t, 0)
 	}
 
