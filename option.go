@@ -1,9 +1,11 @@
 package generics
 
 type Option[V any] struct {
-	Ok bool
 	// Value must be zeroed when Ok is false for deterministic comparability.
 	Value V
+	// bool is the smallest type, so putting it at the end increases the chance it can be packed
+	// with Value.
+	Ok bool
 }
 
 func (me Option[V]) UnwrapOrZeroValue() (_ V) {
