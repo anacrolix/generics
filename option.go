@@ -29,6 +29,7 @@ func (me Option[V]) Unwrap() V {
 	return me.Value
 }
 
+// Deprecated: Use option.AndThen
 func (me Option[V]) AndThen(f func(V) Option[V]) Option[V] {
 	if me.Ok {
 		return f(me.Value)
