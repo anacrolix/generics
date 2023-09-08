@@ -31,7 +31,7 @@ func (me sliceInterface[T]) Len() int {
 	return len(*me.slice)
 }
 
-func InterfaceForSlice[T any](sl *[]T, less func(T, T) bool) Interface[T] {
+func InterfaceForSlice[T any](sl *[]T, less func(l T, r T) bool) Interface[T] {
 	return sliceInterface[T]{
 		slice: sl,
 		less:  less,
