@@ -17,3 +17,10 @@ func AndThen[T, U any](in generics.Option[T], f func(in T) (out generics.Option[
 	}
 	return
 }
+
+func FromPtr[T any](in *T) (_ generics.Option[T]) {
+	if in != nil {
+		return generics.Some(*in)
+	}
+	return
+}
