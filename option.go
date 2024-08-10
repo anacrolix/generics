@@ -1,5 +1,9 @@
 package generics
 
+import (
+	"fmt"
+)
+
 type Option[V any] struct {
 	// Value must be zeroed when Ok is false for deterministic comparability.
 	Value V
@@ -79,5 +83,13 @@ func OptionFromTuple[T any](t T, ok bool) Option[T] {
 		return Some(t)
 	} else {
 		return None[T]()
+	}
+}
+
+func (me Option[V]) String() string {
+	if me.Ok {
+		return fmt.Sprintf("Some(%v)", me.Value)
+	} else {
+		return "None"
 	}
 }
