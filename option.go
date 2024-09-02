@@ -93,3 +93,19 @@ func (me Option[V]) String() string {
 		return "None"
 	}
 }
+
+// Returns an Option that is the left Option if it's Some else the right Option.
+func (me Option[V]) Or(or Option[V]) Option[V] {
+	if me.Ok {
+		return me
+	}
+	return or
+}
+
+// Converts the option to an option expressed as a pointer (old-school nonsense).
+func (me Option[V]) ToPtr() *V {
+	if me.Ok {
+		return &me.Value
+	}
+	return nil
+}
