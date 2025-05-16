@@ -39,3 +39,7 @@ func (r *Result[T]) SetErr(err error) {
 	SetZero(&r.Ok)
 	r.Err = err
 }
+
+func (r *Result[T]) IsOk() bool {
+	return r.Err == nil
+}
