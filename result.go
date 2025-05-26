@@ -5,6 +5,12 @@ type Result[T any] struct {
 	Err error
 }
 
+func Err[T any](err error) Result[T] {
+	return Result[T]{
+		Err: err,
+	}
+}
+
 func ResultFromTuple[T any](t T, err error) Result[T] {
 	return Result[T]{
 		Ok:  t,
