@@ -121,3 +121,10 @@ func (me Option[V]) Iter(yield func(V) bool) {
 		yield(me.Value)
 	}
 }
+
+func (me Option[V]) Filter(f func(V) bool) Option[V] {
+	if me.Ok && !f(me.Value) {
+		me.SetNone()
+	}
+	return me
+}
