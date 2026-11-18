@@ -4,7 +4,8 @@ import (
 	"fmt"
 )
 
-// Any functions that include types additional to V must be global and are in the option package.
+// Methods that introduce types additional to V (such as [Option.Map]) require Go 1.27. The
+// equivalent functions in the option package remain for older toolchains.
 type Option[V any] struct {
 	// Value must be zeroed when Ok is false for deterministic comparability.
 	Value V
@@ -32,14 +33,6 @@ func (me Option[V]) Unwrap() V {
 		panic("not set")
 	}
 	return me.Value
-}
-
-// Deprecated: Use option.AndThen
-func (me Option[V]) AndThen(f func(V) Option[V]) Option[V] {
-	if me.Ok {
-		return f(me.Value)
-	}
-	return me
 }
 
 func (me Option[V]) UnwrapOr(or V) V {
